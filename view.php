@@ -1,5 +1,5 @@
 <script></script>
-<div class="feedly_ts">
+<div class="feedly_ts" id="feedly_ts">
 
 	<!-- Header -->
 	<div class="feedly_ts_header"><?php echo $title ?></div>

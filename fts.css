@@ -1,5 +1,5 @@
 /* gle */
-.feedly_ts
+#feedly_ts.feedly_ts
 {
 	min-width: 280px;
 	border: 1px solid #e7e7e7;
@@ -7,7 +7,7 @@
 }
 
 /* header */
-.feedly_ts_header
+#feedly_ts .feedly_ts_header
 {
 	height: 35px;
 	line-height: 35px;
@@ -20,28 +20,28 @@
 }
 
 /* body */
-.feedly_ts_body
+#feedly_ts .feedly_ts_body
 {
 	padding: 0 10px;
 }
 
-.fts_item
+#feedly_ts .fts_item
 {
 	border-bottom: 1px solid #e7e7e7;
 	padding: 20px 0; 
 }
-.fts_item:last-child
+#feedly_ts .fts_item:last-child
 {
 	border-bottom: none; 
 }
-.fts_item_visual
+#feedly_ts .fts_item_visual
 {
 	width: 64px;
 	height: 64px;
 	margin-right: 10px;
 	float: left;
 }
-.fts_item_visual img
+#feedly_ts .fts_item_visual img
 {
 	width: 64px;
 	height: 64px;
@@ -49,28 +49,31 @@
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 }
-.fts_item_content_wrapper
+#feedly_ts .fts_item_content_wrapper
 {
 	margin-left: 64px;
 }
-.fts_item_title
+#feedly_ts .fts_item_title
 {
 	height: 38px;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	font-family: 'helvetica';
-	font-size: 14px;
 	line-height: 18px;
 	color: #323232;	
 }
-.fts_item_title a, .fts_item_title a:hover
+#feedly_ts .fts_item_title a
+{
+	font-size: 14px;
+}
+#feedly_ts .fts_item_title a, #feedly_ts .fts_item_title a:hover
 {
 	color: #323232 !important;	
 	text-decoration: none;
 }
 
 
-.fts_item_info
+#feedly_ts .fts_item_info
 {
 	font-family: 'helvetica';
 	font-size: 12px;
@@ -78,7 +81,7 @@
 	color: #b6b6b6;
 }
 
-.fts_item_engagement
+#feedly_ts .fts_item_engagement
 {
 	font-family: 'helvetica';
 	font-size: 12px;
@@ -87,24 +90,24 @@
 }
 
 /* non visuals */
-.fts_non_visual .fts_item_visual
+#feedly_ts .fts_non_visual .fts_item_visual
 {
 	display: none;
 }
-.fts_non_visual .fts_item_content_wrapper
+#feedly_ts .fts_non_visual .fts_item_content_wrapper
 {
 	margin-left: 0px;
 }
 
 /* Footer */
-.feedly_ts_footer
+#feedly_ts .feedly_ts_footer
 {
 	padding: 10px;
 	background: #fff;
 	border-top: 1px solid #e7e7e7;
 }
 
-.fts_logo
+#feedly_ts .fts_logo
 {
 	float: right;
 	width: 60px;
@@ -115,11 +118,11 @@
 	background-size: 60px 18px;
 }
 
-.follow_wrapper
+#feedly_ts .follow_wrapper
 {
 	height: 28px;
 }
-.fts_follow
+#feedly_ts .fts_follow
 {
 	display: inline-block;
 	height: 28px;
@@ -135,18 +138,18 @@
 	padding: 0 8px;
 	margin-right: 4px;
 }
-.fts_follow span
+#feedly_ts .fts_follow span
 {
 	letter-spacing: 4px;
 }
-.fts_follow:hover
+#feedly_ts .fts_follow:hover
 {
 	color: #fff;
 	background-color: #63a83f;
 	text-decoration: none;
 }
 
-.fts_readers_count
+#feedly_ts .fts_readers_count
 {
 	display: inline-block;
 	position: relative;
