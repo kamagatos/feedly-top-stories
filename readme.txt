@@ -16,11 +16,11 @@ The Feedly Top Stories wordpress plugin enables users to feature their most enga
 **Installation**
 
 1. Upload `feedly-topstories` directory to your `/wp-content/plugins` directory.
-1. Activate plugin in WordPress admin.
-1. In WordPress dashboard, go to **Appearance > Widgets**. 
-1. Drag and Drop **Feedly Top Stories** into your sidebar.
-1. Click triangle near **Feedly Top Stories** header.
-1. Enter your website feed URL.
-1. Choose the number of stories you want to feature.
+2. Activate plugin in WordPress admin.
+3. In WordPress dashboard, go to **Appearance > Widgets**. 
+4. Drag and Drop **Feedly Top Stories** into your sidebar.
+5. Click triangle near **Feedly Top Stories** header.
+6. Enter your website feed URL.
+7. Choose the number of stories you want to feature.
 
 == Changelog ==
