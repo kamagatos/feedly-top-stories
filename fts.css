@@ -6,6 +6,11 @@
 	background: #fff;
 }
 
+#feedly_ts.fts_only_btn
+{
+	border-top: none;
+}
+
 /* header */
 #feedly_ts .feedly_ts_header
 {
@@ -45,9 +50,10 @@
 {
 	width: 64px;
 	height: 64px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+	border: 1px solid #DFDFDF;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 }
 #feedly_ts .fts_item_content_wrapper
 {
@@ -68,7 +74,7 @@
 }
 #feedly_ts .fts_item_title a, #feedly_ts .fts_item_title a:hover
 {
-	color: #323232 !important;	
+	color: #323232;	
 	text-decoration: none;
 }
 
@@ -136,6 +142,7 @@
 	font-weight: bold;
 	font-size: 13px;
 	padding: 0 8px;
+	padding-left: 7px;
 	margin-right: 4px;
 }
 #feedly_ts .fts_follow span
@@ -159,7 +166,7 @@
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	background-color: #fff;
-	color: #4e4e4e;
+	color: #afafaf;
 	font-family: 'helvetica';
 	font-weight: regular;
 	font-size: 13px;

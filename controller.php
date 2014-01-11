@@ -75,6 +75,9 @@ class FTSWidget extends WP_Widget {
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['url'] = strip_tags( $new_instance['url'] );
 		$instance['nbposts'] = strip_tags( $new_instance['nbposts'] );
+		$instance['font'] = strip_tags( $new_instance['font'] );
+		$instance['bgcolor'] = strip_tags( $new_instance['bgcolor'] );
+		$instance['color'] = strip_tags( $new_instance['color'] );
 		
 		return $instance;
 	}
@@ -85,7 +88,10 @@ class FTSWidget extends WP_Widget {
 		extract( array_merge( array(
 			'Title'			=> 'Feedly top stories',
 			'Feed ID'			=> 'feed/http://blog.feedly.com/feed/',
+			'Widget font'			=> 'helvetica',
 			'Number of posts to show'			=> '3',
+			'Background color'			=> '#ffffff',
+			'Text color'			=> '#323232',
 		), $instance ) ); ?>
 			
 		<p>
@@ -95,6 +101,18 @@ class FTSWidget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('url'); ?>"><?php _e('Feed ID:'); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id('url'); ?>" name="<?php echo $this->get_field_name('url'); ?>" type="text" value="<?php echo $url; ?>" />
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('font'); ?>"><?php _e('Font :'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id('font'); ?>" name="<?php echo $this->get_field_name('font'); ?>" type="text" value="<?php echo $font; ?>" />
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('color'); ?>"><?php _e('Color of the text:'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id('color'); ?>" name="<?php echo $this->get_field_name('color'); ?>" type="text" value="<?php echo $color; ?>" />
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('bgcolor'); ?>"><?php _e('Background color:'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id('bgcolor'); ?>" name="<?php echo $this->get_field_name('bgcolor'); ?>" type="text" value="<?php echo $bgcolor; ?>" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('nbposts'); ?>"><?php _e('Number of posts to show:'); ?></label>
