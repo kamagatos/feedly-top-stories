@@ -1,5 +1,5 @@
 
-<?php if (count($cleaned_items)) { ?>
+<?php if (count($cleaned_items) && !$bad_response) { ?>
 
 
 <div class="feedly_ts" id="feedly_ts">
@@ -48,7 +48,10 @@
 		<a href="http://feedly.com" target="_blank" class="fts_logo"></a>
 		<div class="follow_wrapper">
 			<a href="<?php echo $feed_url ?>" target="_blank" class="fts_follow"><span>+</span>Follow</a>
-			<div class="fts_readers_count"><?php echo $subscribers ?></div>
+
+			<?php if ($subscribers >= 0) { ?>
+				<div class="fts_readers_count"><?php echo $subscribers ?></div>
+			<?php } ?>
 		</div>
 	</div>
 </div>

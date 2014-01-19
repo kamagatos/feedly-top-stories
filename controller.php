@@ -35,34 +35,46 @@ class FTSWidget extends WP_Widget {
 		else if ($nbposts >= 20)
 			$nbposts = 20;
 
+		//Bad response
+		$bad_response = false;
+
 		//Get the data
 		$json1 = file_get_contents('http://cloud.feedly.com/v3/feeds/' . urlencode($url));
-		$obj1 = json_decode($json1);
-		$subscribers = subscribers_count($obj1->subscribers);
-
 		$json = file_get_contents('http://cloud.feedly.com/v3/mixes/' . urlencode($url) . '/contents?count=' . $nbposts);
-		$obj = json_decode($json);
 
-	    $items = $obj->items;
-	    $cleaned_items = Array();
-	    $fts_class = 'fts_non_visual';
-	    $feed_url = 'http://feedly.com/#subscription/' . urlencode($url);
-	    
-	    foreach($items as $i => $item)
-	    {
-	      	$cleaned_items[$i]['title'] = $item->title;
-	      	$cleaned_items[$i]['post_link'] = $item->originId;
-	      	$cleaned_items[$i]['author'] = $item->author;
-	      	$cleaned_items[$i]['engagement'] = $item->engagement;
-	      	$cleaned_items[$i]['published'] = timeago($item->published/1000);
-			$visual = $item->visual;
-      		if ($visual->url)
-      		{
-      			$fts_class = '';
-      			$cleaned_items[$i]['is_visual'] = true;
-      			$cleaned_items[$i]['url'] = $visual->url;
-      		}
-	    }
+		if ($json && $json1)
+		{
+			$obj1 = json_decode($json1);
+			$subscribers = subscribers_count($obj1->subscribers);
+
+			$obj = json_decode($json);
+
+		    $items = $obj->items;
+		    $cleaned_items = Array();
+		    $fts_class = 'fts_non_visual';
+		    $feed_url = 'http://feedly.com/#subscription/' . urlencode($url);
+		    
+		    foreach($items as $i => $item)
+		    {
+		      	$cleaned_items[$i]['title'] = $item->title;
+		      	$cleaned_items[$i]['post_link'] = $item->originId;
+		      	$cleaned_items[$i]['author'] = $item->author;
+		      	$cleaned_items[$i]['engagement'] = $item->engagement;
+		      	$cleaned_items[$i]['published'] = timeago($item->published/1000);
+				$visual = $item->visual;
+	      		if ($visual->url)
+	      		{
+	      			$fts_class = '';
+	      			$cleaned_items[$i]['is_visual'] = true;
+	      			$cleaned_items[$i]['url'] = $visual->url;
+	      		}
+		    }
+		}
+		else
+		{
+			$bad_response = true;
+			$subscribers = -1;
+		}
 
 		// include view
 		include( $sfplugin->pluginPath . 'view.php' );
