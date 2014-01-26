@@ -5,7 +5,9 @@
 <div class="feedly_ts" id="feedly_ts">
 
 	<!-- Header -->
-	<div class="feedly_ts_header"><?php echo $title ?></div>
+	<?php if ($title){ ?>
+		<div class="feedly_ts_header"><?php echo $title ?></div>
+	<? } ?>
 
 	<!-- body -->
 	<div style="
