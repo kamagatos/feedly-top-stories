@@ -68,6 +68,10 @@
 	line-height: 18px;
 	color: #323232;	
 }
+#feedly_ts .fts_item:hover .fts_item_title a
+{
+	color: #000;
+}
 #feedly_ts .fts_item_title a
 {
 	font-size: 14px;
@@ -116,12 +120,25 @@
 #feedly_ts .fts_logo
 {
 	float: right;
-	width: 60px;
-	height: 18px;
+	width: 60px !important;
+	height: 18px !important;
 	margin-top: 5px;
 	background-image: url('logo.png');
 	background-repeat: no-repeat;
 	background-size: 60px 18px;
+	opacity: 0.3;
+	-webkit-transition: opacity 0.2s;
+}
+#feedly_ts .fts_logo:hover
+{
+	float: right;
+	width: 60px !important;
+	height: 18px !important;
+	margin-top: 5px;
+	background-image: url('logo.png');
+	background-repeat: no-repeat;
+	background-size: 60px 18px;
+	opacity: 1;
 }
 
 #feedly_ts .follow_wrapper

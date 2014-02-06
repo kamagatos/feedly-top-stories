@@ -168,10 +168,12 @@ function subscribers_count($count){
 		return '1 reader';
 	else
 	{
-		if ($count > 999 && $count <= 999999) 
-		    $result = floor($count / 1000) . 'K';
-		elseif ($count > 999999)
+		if ($count > 1000000) 
 		    $result = floor($count / 1000000) . 'M';
+		elseif ($count > 1000)
+		    $result = floor($count / 1000) . 'K';
+		elseif ($count > 100)
+			$result = (floor($count/100) * 100) . '+';
 		else
 		    $result = $count;
 		return $result . ' readers';
