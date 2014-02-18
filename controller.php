@@ -166,16 +166,18 @@ function subscribers_count($count){
 		return 'No readers';
 	else if ($count == 1)
 		return '1 reader';
-	else
-	{
-		if ($count > 1000000) 
-		    $result = floor($count / 1000000) . 'M';
-		elseif ($count > 1000)
-		    $result = floor($count / 1000) . 'K';
-		elseif ($count > 100)
-			$result = (floor($count/100) * 100) . '+';
+	else{
+		if ($count < 100){
+			$result = $count;
+		}
+		else if ($count < 1000){
+			$result = (int)($count/100) . "00+";
+		}
 		else
-		    $result = $count;
+		{
+			$result = round($count/1000, 1) . "k";
+			
+		}
 		return $result . ' readers';
 	}
 }
