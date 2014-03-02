@@ -1,16 +1,16 @@
 <?php
 /*
 Plugin Name: Feedly Top Stories
-Plugin URI: 
-Description: 
+Plugin URI:
+Description:
 Version: 1.0
 Author: Mohamed Kamagate
 Author URI: http://kamagatos.com
-License: 
+License:
 */
 
 class FTSWidget extends WP_Widget {
-	
+
 	//Register the widget
 	function FTSWidget() {
 		$widget_ops = array( 'description' => 'Display Feedly Top Stories' );
@@ -19,9 +19,9 @@ class FTSWidget extends WP_Widget {
 
 	// Frontend
 	function widget( $args, $instance ) {
-		
+
 		global $sfplugin;
-		
+
 		// extract user options
 		extract( $args );
 		extract( $instance );
@@ -45,7 +45,7 @@ class FTSWidget extends WP_Widget {
 		if ($json && $json1)
 		{
 			$obj1 = json_decode($json1);
-			$subscribers = subscribers_count($obj1->subscribers);
+			$subscribers = count_formatter($obj1->subscribers)  . ' readers';
 
 			$obj = json_decode($json);
 
@@ -53,13 +53,13 @@ class FTSWidget extends WP_Widget {
 		    $cleaned_items = Array();
 		    $fts_class = 'fts_non_visual';
 		    $feed_url = 'http://feedly.com/#subscription/' . urlencode($url);
-		    
+
 		    foreach($items as $i => $item)
 		    {
 		      	$cleaned_items[$i]['title'] = $item->title;
 		      	$cleaned_items[$i]['post_link'] = $item->originId;
 		      	$cleaned_items[$i]['author'] = $item->author;
-		      	$cleaned_items[$i]['engagement'] = $item->engagement;
+		      	$cleaned_items[$i]['engagement'] = count_formatter($item->engagement);
 		      	$cleaned_items[$i]['published'] = timeago($item->published/1000);
 				$visual = $item->visual;
 	      		if ($visual->url)
@@ -78,11 +78,11 @@ class FTSWidget extends WP_Widget {
 
 		// include view
 		include( $sfplugin->pluginPath . 'view.php' );
-	}	
+	}
 
 	//Sanitize widget form values as they are saved
 	function update( $new_instance, $old_instance ) {
-		
+
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['url'] = strip_tags( $new_instance['url'] );
@@ -90,13 +90,13 @@ class FTSWidget extends WP_Widget {
 		$instance['font'] = strip_tags( $new_instance['font'] );
 		$instance['bgcolor'] = strip_tags( $new_instance['bgcolor'] );
 		$instance['color'] = strip_tags( $new_instance['color'] );
-		
+
 		return $instance;
 	}
 
 	//Back-end form
 	function form( $instance ) {
-		
+
 		extract( array_merge( array(
 			'Title'			=> 'Feedly top stories',
 			'Feed ID'			=> 'feed/http://blog.feedly.com/feed/',
@@ -105,13 +105,13 @@ class FTSWidget extends WP_Widget {
 			'Background color'			=> '#ffffff',
 			'Text color'			=> '#323232',
 		), $instance ) ); ?>
-			
+
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title'); ?></label> 
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('url'); ?>"><?php _e('Feed ID:'); ?></label> 
+			<label for="<?php echo $this->get_field_id('url'); ?>"><?php _e('Feed ID:'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('url'); ?>" name="<?php echo $this->get_field_name('url'); ?>" type="text" value="<?php echo $url; ?>" />
 		</p>
 		<p>
@@ -130,8 +130,8 @@ class FTSWidget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id('nbposts'); ?>"><?php _e('Number of posts to show:'); ?></label>
 			<input size="6" id="<?php echo $this->get_field_id('nbposts'); ?>" name="<?php echo $this->get_field_name('nbposts'); ?>" type="text" value="<?php echo $nbposts; ?>" />
 		</p>
-	<?php 
-	}	
+	<?php
+	}
 }
 
 // Have to clean those functions later on (public static)
@@ -161,7 +161,7 @@ function timeago($ptime)
     }
 }
 
-function subscribers_count($count){
+function count_formatter($count){
 	if ($count <= 0)
 		return 'No readers';
 	else if ($count == 1)
@@ -176,9 +176,9 @@ function subscribers_count($count){
 		else
 		{
 			$result = round($count/1000, 1) . "k";
-			
+
 		}
-		return $result . ' readers';
+		return $result;
 	}
 }
 
