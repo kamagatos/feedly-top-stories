@@ -97,6 +97,11 @@ class FTSWidget extends WP_Widget {
 	//Back-end form
 	function form( $instance ) {
 
+		if (!$url) {
+			$url = getFeedlyIdByHostname();
+			$instance['url'] = $url;
+		}
+
 		extract( array_merge( array(
 			'Title'			=> 'Feedly top stories',
 			'Feed ID'			=> 'feed/http://blog.feedly.com/feed/',
@@ -163,7 +168,7 @@ function timeago($ptime)
 
 function count_formatter($count){
 	if ($count <= 0)
-		return 'No readers';
+		return 'No ';
 	else if ($count == 1)
 		return '1 reader';
 	else{
@@ -179,6 +184,19 @@ function count_formatter($count){
 
 		}
 		return $result;
+	}
+}
+
+function getFeedlyIdByHostname() {
+	$hostname = $_SERVER['HTTP_HOST'];
+	$hostname = 'www.presse-citron.net';
+	$json = file_get_contents('http://cloud.feedly.com/v3/search/feeds?q=' . urlencode($hostname));
+	$feeds = json_decode($json);
+
+	if (empty($feeds->results))
+		return '';
+	else {
+		return str_replace('feed/', '', $feeds->results[0]->feedId);
 	}
 }
 
